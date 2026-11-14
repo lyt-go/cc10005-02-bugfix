@@ -12,7 +12,7 @@ router = APIRouter(prefix="/api/connector", tags=["连接器管理"])
 
 service = ConnectorService()
 
-LIST_FIELDS = ["连接器编号", "协议类型", "目标端点", "认证参数", "重连次数", "心跳间隔", "数据编码", "超时阈值"]
+LIST_FIELDS = ["连接器编号", "协议类型", "目标端点", "认证参数", "重连次数", "心跳间隔", "数据编码", "超时阈值", "绑定代理"]
 STATUSES = ["草稿", "连通测试中", "已就绪", "已离线"]
 
 
@@ -41,10 +41,10 @@ def get_entry(entry_id: int) -> dict:
 
 @router.post("", response_model=ActionResult)
 def create_entry(payload: EntryPayload) -> ActionResult:
-    """登记一条数据连接器，缺字段时说明原因而不是静默丢弃。"""
-    entry, missing = service.create_entry(payload.values)
-    if missing:
-        return ActionResult(ok=False, message=f"缺少必填字段：{'、'.join(missing)}")
+    """登记一条数据连接器；缺字段或超时阈值越界时说明原因，未达标准不保存。"""
+    entry, errors = service.create_entry(payload.values)
+    if errors:
+        return ActionResult(ok=False, message="；".join(errors))
     return ActionResult(ok=True, message="数据连接器已登记", entry=entry)
 
 

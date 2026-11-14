@@ -33,3 +33,22 @@ body { margin: 0; background: #f6f8fb; color: #1f2937; }
 .link { border: none; background: none; color: var(--brand); cursor: pointer; padding: 0; }
 .page-foot { display: flex; justify-content: space-between; margin-top: 8px; font-size: 12px; color: var(--muted); }
 .error-text { color: #b42318; }
+.notice-text { color: #137333; }
+.row-selected td { background: #f0f6ff; }
+.link:disabled { color: var(--muted); cursor: not-allowed; }
+.status-pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; background: #eef2f7; }
+.status-pill.status-已就绪 { background: #e7f6ec; color: #137333; }
+.status-pill.status-连通测试中 { background: #fff4e0; color: #9a5b00; }
+.status-pill.status-已离线 { background: #eceff3; color: #64748b; }
+.detail-panel { margin-top: 12px; background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; }
+.detail-head { display: flex; justify-content: space-between; align-items: center; }
+.detail-head h3 { margin: 0; font-size: 15px; }
+.detail-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px 16px; margin: 10px 0; }
+.detail-label { display: block; font-size: 12px; color: var(--muted); }
+.history-list { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.history-list li { display: flex; flex-wrap: wrap; gap: 8px; font-size: 12px; border-bottom: 1px dashed var(--border); padding-bottom: 6px; }
+.history-time { color: var(--muted); }
+.history-result { font-weight: 600; }
+.history-result.history-通过 { color: #137333; }
+.history-result.history-拒绝 { color: #b42318; }
+.history-detail { color: var(--muted); flex-basis: 100%; }
